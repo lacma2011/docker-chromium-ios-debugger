@@ -1,0 +1,14 @@
+version: "3.4"
+services:
+    ubuntu:
+        build: ubuntu
+        network_mode: host
+        environment:
+            - "DISPLAY=unix${DISPLAY}"
+        volumes:
+            - "${HOME}/.Xauthority:/root/.Xauthority:rw"
+            - /dev/bus/usb:/dev/bus/usb
+        entrypoint:
+            - ios_webkit_debug_proxy
+            - -f
+            - chrome-devtools://devtools/bundled/inspector.html
